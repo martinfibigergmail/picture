@@ -2,8 +2,6 @@ package cz.pf;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.File;
 
 public class ThirdExample {
@@ -14,15 +12,18 @@ public class ThirdExample {
         f.setSize(1400,1400);
         f.setLayout(null);//no layout manager
 
-        // set reaction to closing window
-        // add and create class that will handle window close event
-        f.addWindowListener(new WindowAdapter() {
+      /*  WindowAdapter w = new WindowAdapter() {
             // react to window close
             public void windowClosing(WindowEvent windowEvent){
                 // kill application on closing the window
                 System.exit(0);
             }
-        });
+        };*/
+        ClosingWindowListenerAdapter w = new ClosingWindowListenerAdapter();
+
+        // set reaction to closing window
+        // add and create class that will handle window close event
+        f.addWindowListener(w);
         // Load file with JPG picture and create an image
         Image image = ImageIO.read(new File("c:\\Users\\martas\\Pictures\\david_20171207_193013.jpg"));
 
@@ -32,7 +33,6 @@ public class ThirdExample {
             // painting method is called when window is being closed
             public void paint(Graphics g){
                 super.paint(g);
-                 /*
                 // set color to red
                 g.setColor(Color.red);
                 // fill in ellipse
@@ -42,22 +42,23 @@ public class ThirdExample {
                 g.setColor(Color.green);
                 // draw a line from one point to another
                 g.drawLine(10,1,30,300);
-                */
 
                 // draw photos if picture loaded
+                /*
                 if(image!=null) {
                     // for all rows (this will happen after set size so it will be running 10 times
-                    for(int i = 0;i<this.getHeight();i+=100)
+                    for(int x = 99;x<this.getWidth();x+=100)
                         // for all columns (this will happen after set size so it will be running 10 times
-                        for(int y = 0;y<this.getWidth();y+=100)
+                        for(int y = 0;y<this.getHeight();y+=100)
                             // draw image
-                            g.drawImage(image,y,i,100,100,this);
+                            g.drawImage(image,x,y,100,100,this);
                 }
-
+*/
             }
         };
         // set background to gray
-        myCanvas.setBackground (Color.GRAY);
+        // myCanvas.setBackground (new Color(5,0xe,6));
+        myCanvas.setBackground (new Color(200,10,200));
 
         // set size of the canvas
         myCanvas.setSize(1000, 1000);
